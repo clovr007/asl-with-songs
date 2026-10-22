@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson: We Don't Talk Anymore — EchoSign ASL</title>
+  <meta name="description" content="Learn American Sign Language through the song 'We Don't Talk Anymore' by Charlie Puth ft. Selena Gomez. A 4-step guided ASL lesson for beginners.">
+  <meta name="theme-color" content="#5B5FA8">
+
+  <!-- Google Fonts: Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Shared & Lesson Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="lesson-page-body">
+
+  <!-- ========================================================================
+       SITE HEADER & QUICK NAVIGATION
+       ======================================================================== -->
+  <header class="site-header" role="banner">
+    <div class="container nav-wrapper">
+      <!-- Brand Logo -->
+      <a href="index.html" class="brand-link" aria-label="Return to EchoSign Home">
+        <span class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18V5l12-2v13" />
+            <circle cx="6" cy="18" r="3" />
+            <circle cx="18" cy="16" r="3" />
+          </svg>
+        </span>
+        <span>echosign</span>
+        <span class="brand-badge">LESSON</span>
+      </a>
+
+      <!-- Direct Navigation -->
+      <nav class="site-nav" role="navigation" aria-label="Lesson Navigation">
+        <ul class="nav-list" style="display: flex;">
+          <li><a href="index.html" class="nav-link">← All Lessons</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       MAIN LESSON EXPERIENCE (4-STEP GUIDED FLOW)
+       ======================================================================== -->
+  <main id="main-content" class="container lesson-main-layout">
+    
+    <!-- Top Stepper Progress Hub -->
+    <header class="lesson-stepper-header" aria-label="Lesson Progress">
+      <div class="stepper-top-row">
+        <div class="song-header-meta">
+          <span class="badge-track-pill">Track 01</span>
+          <h1 class="lesson-song-headline">We Don't Talk Anymore</h1>
+          <p class="lesson-song-sub">Charlie Puth ft. Selena Gomez</p>
+        </div>
+
+        <div class="stepper-counter-box">
+          <span class="step-counter-label" id="stepIndicatorText">Step 1 of 4</span>
+        </div>
+      </div>
+
+      <!-- Chunky Progress Bar Track -->
+      <div class="stepper-progress-track" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" aria-label="Lesson progression">
+        <div class="stepper-progress-fill" id="lessonProgressFill">
+          <span class="stepper-dot-glow"></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Dynamic Container: Step Content Rendered Entirely From js/lessons.js -->
+    <div id="lessonStepContainer" class="lesson-dynamic-viewport" role="region" aria-live="polite">
+      <!-- Content populated dynamically by LessonController in js/lessons.js -->
+    </div>
+
+    <!-- Stepper Navigation Action Deck (Back / Next) -->
+    <nav class="stepper-actions-bar" aria-label="Step Controls">
+      <button type="button" class="btn btn-secondary stepper-btn" id="btnLessonBack" aria-label="Previous step">
+        ← Home
+      </button>
+
+      <button type="button" class="btn btn-primary stepper-btn" id="btnLessonNext" aria-label="Next step">
+        Next: Step 2 →
+      </button>
+    </nav>
+
+    <!-- Song Credits & Legal Notices Box -->
+    <aside class="lesson-credits-card" id="lessonCreditsBox" aria-label="Song Credits and Disclaimers">
+      <!-- Populated from LESSON_CONFIG.song in js/lessons.js -->
+    </aside>
+
+  </main>
+
+  <!-- ========================================================================
+       FOOTER & DEAF INSTRUCTION NOTICE
+       ======================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="deaf-notice-card" role="note" aria-label="Educational Disclaimer">
+        <div class="notice-header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <span>Important Cultural Reminder</span>
+        </div>
+        <p>
+          <strong>A portfolio project, not a substitute for Deaf-led ASL instruction.</strong>
+          EchoSign is created to make introductory signs memorable through song rhythms. To truly learn American Sign Language, embrace its culture and syntax through classes taught by Deaf educators.
+        </p>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 EchoSign. Built for Vercel static deployment.</p>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#how-it-works">How It Works</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lesson Data & Controller Script -->
+  <script src="js/lessons.js"></script>
+</body>
+</html>
