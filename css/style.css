@@ -2162,3 +2162,342 @@ a {
 .credit-line strong, .disclaimer-line strong {
   color: var(--color-navy);
 }
+
+/* ==========================================================================
+   13. Hand Drawing Styles & Motion Animations (Clear Sketch Style)
+   ========================================================================== */
+.sign-drawing-svg {
+  width: 100%;
+  max-width: 210px;
+  height: auto;
+  background-color: var(--color-cream);
+  border: 2px solid var(--color-navy);
+  border-radius: var(--radius-md);
+  padding: 0.5rem;
+  box-shadow: inset 0 2px 4px rgba(43, 47, 122, 0.08);
+  display: block;
+}
+
+/* Animated Keyframes for Defined Hand Movements */
+@keyframes hand-we-sweep {
+  0% { transform: translateX(-28px) rotate(-5deg); }
+  50% { transform: translateX(0px) translateY(-6px) rotate(0deg); }
+  100% { transform: translateX(28px) rotate(5deg); }
+}
+
+@keyframes hand-talk-tap {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(-8px) translateY(-3px) rotate(-3deg); }
+  45% { transform: translateX(0) rotate(0deg); }
+  70% { transform: translateX(-8px) translateY(-3px) rotate(-3deg); }
+  85% { transform: translateX(0) rotate(0deg); }
+}
+
+@keyframes hand-not-sweep {
+  0% { transform: translateX(0) translateY(0) scale(1); }
+  40% { transform: translateX(26px) translateY(-8px) scale(1.05); }
+  55% { transform: translateX(32px) translateY(-10px) scale(1.08); }
+  100% { transform: translateX(0) translateY(0) scale(1); }
+}
+
+@keyframes hand-more-left {
+  0%, 100% { transform: translateX(0); }
+  35% { transform: translateX(14px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(14px); }
+}
+
+@keyframes hand-more-right {
+  0%, 100% { transform: translateX(0); }
+  35% { transform: translateX(-14px); }
+  50% { transform: translateX(-4px); }
+  75% { transform: translateX(-14px); }
+}
+
+@keyframes hand-miss-pulse {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.06) translateY(-3px); }
+}
+
+/* Generic Gentle Pulse */
+@keyframes hand-general-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05) translateY(-2px); }
+}
+
+/* Animation Bindings */
+.hand-motion-we {
+  animation: hand-we-sweep 2.2s ease-in-out infinite alternate;
+  transform-origin: center bottom;
+}
+
+.hand-motion-talk {
+  animation: hand-talk-tap 1.8s ease-in-out infinite;
+  transform-origin: right bottom;
+}
+
+.hand-motion-not {
+  animation: hand-not-sweep 2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+  transform-origin: left bottom;
+}
+
+.hand-motion-more-left {
+  animation: hand-more-left 1.8s ease-in-out infinite;
+  transform-origin: left center;
+}
+
+.hand-motion-more-right {
+  animation: hand-more-right 1.8s ease-in-out infinite;
+  transform-origin: right center;
+}
+
+.hand-motion-miss {
+  animation: hand-miss-pulse 2s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+.hand-motion-pulse {
+  animation: hand-general-pulse 2s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+/* Pause animation state */
+.is-motion-paused .animated-hand {
+  animation-play-state: paused !important;
+}
+
+/* Slow speed modifier */
+.is-motion-slow .animated-hand {
+  animation-duration: 3.5s !important;
+}
+
+/* Media Box Interactive Controls (Step 2) */
+.media-motion-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+  background: rgba(43, 47, 122, 0.4);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 244, 227, 0.2);
+}
+
+.motion-control-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-cream);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.motion-control-btn:hover {
+  background: rgba(255, 244, 227, 0.15);
+}
+
+.motion-control-btn.is-active {
+  background: var(--color-coral);
+  color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   Step 3: Section ASL Movement Studio ("Video" for each separated part)
+   -------------------------------------------------------------------------- */
+.section-motion-studio {
+  background-color: var(--color-indigo);
+  border: 3px solid var(--color-navy);
+  border-radius: var(--radius-xl);
+  padding: 1.25rem;
+  box-shadow: 0 8px 0 var(--color-navy);
+  margin-bottom: 1.75rem;
+  color: var(--color-cream);
+}
+
+.studio-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px dashed rgba(255, 244, 227, 0.25);
+  margin-bottom: 1rem;
+}
+
+.studio-title-block {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.studio-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  background-color: var(--color-coral);
+  color: #FFFFFF;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.06em;
+}
+
+.studio-section-name {
+  font-size: 1.05rem;
+  font-weight: 900;
+  color: var(--color-cream);
+}
+
+/* Studio Stage: Split view between the drawing hand video and info */
+.studio-stage {
+  background-color: #FFFFFF;
+  border: 2px solid var(--color-navy);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  align-items: center;
+  box-shadow: inset 0 3px 6px rgba(43, 47, 122, 0.08);
+}
+
+@media (min-width: 640px) {
+  .studio-stage {
+    grid-template-columns: 220px 1fr;
+    gap: 1.75rem;
+  }
+}
+
+.studio-hand-viewport {
+  background-color: var(--color-cream);
+  border: 2px solid var(--color-navy);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 4px 0 var(--color-navy);
+}
+
+.studio-sign-tag {
+  font-size: 0.8rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  background-color: var(--color-coral);
+  padding: 0.2rem 0.75rem;
+  border-radius: var(--radius-pill);
+  margin-top: 0.5rem;
+  border: 1px solid var(--color-navy);
+}
+
+.studio-details-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.studio-sign-word {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--color-navy);
+  line-height: 1;
+}
+
+.studio-sign-tip {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-navy);
+}
+
+.studio-lyrics-ref {
+  background-color: rgba(91, 95, 168, 0.08);
+  border-left: 3px solid var(--color-indigo);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+/* Studio Sequence Reel (Buttons to cycle or jump to any sign in this section) */
+.studio-reel-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: 1px dashed rgba(255, 244, 227, 0.25);
+}
+
+.reel-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: rgba(255, 244, 227, 0.85);
+  white-space: nowrap;
+}
+
+.reel-step-btn {
+  background-color: #FFFFFF;
+  border: 1.5px solid var(--color-navy);
+  border-radius: var(--radius-pill);
+  padding: 0.25rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--color-navy);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.reel-step-btn:hover {
+  background-color: var(--color-cream-tint);
+}
+
+.reel-step-btn.is-active {
+  background-color: var(--color-coral);
+  color: #FFFFFF;
+  border-color: var(--color-navy);
+  box-shadow: 0 2px 0 var(--color-coral-dark);
+}
+
+/* Mini Hand Sign Badges inside each Section Card in Step 3 */
+.sec-hands-preview {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.75rem 0;
+  background-color: #FFFFFF;
+  border: 1.5px solid rgba(43, 47, 122, 0.15);
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.75rem;
+  overflow-x: auto;
+}
+
+.preview-sign-thumb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  flex-shrink: 0;
+}
+
+.preview-sign-thumb svg {
+  width: 44px;
+  height: 44px;
+  background-color: var(--color-cream);
+  border: 1px solid var(--color-navy);
+  border-radius: var(--radius-xs);
+  padding: 2px;
+}
+
+.preview-thumb-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--color-navy);
+}

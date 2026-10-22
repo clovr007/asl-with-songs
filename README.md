@@ -27,10 +27,12 @@ The visual design is inspired by tactile retro MP3 players, pocket tape decks, a
 ```text
 ECHOSIGN/
 ├── index.html        # Semantic HTML5 home page
+├── lesson.html       # 4-step guided ASL lesson for "We Don't Talk Anymore"
 ├── css/
-│   └── style.css     # CSS variables, retro flat player cards, mobile-first queries
+│   └── style.css     # Design system, retro player frames, hand motion animations
 ├── js/
-│   └── main.js       # Play/pause toggle, equalizer animation, faux progress bar, mobile drawer
+│   ├── main.js       # Home page interactions (equalizer, faux player, drawer)
+│   └── lessons.js    # Data model, drawing SVGs, hand studio, YouTube API controller
 └── README.md         # Project documentation & local run guide
 ```
 
