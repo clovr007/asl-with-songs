@@ -1,0 +1,1245 @@
+/* ==========================================================================
+   ECHOSIGN - STYLESHEET
+   Retro Flat Music-Player Aesthetic for ASL Learning
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design System & CSS Variables
+   -------------------------------------------------------------------------- */
+:root {
+  /* Core Required Palette */
+  --color-coral: #F27B7B;
+  --color-indigo: #5B5FA8;
+  --color-navy: #2B2F7A;
+  --color-cream: #FFF4E3;
+
+  /* Harmonious Extended Tones */
+  --color-coral-dark: #DC6565;
+  --color-coral-light: #FF9B9B;
+  --color-indigo-dark: #464A8D;
+  --color-indigo-light: #7E82C8;
+  --color-navy-dark: #1E215C;
+  --color-cream-card: #FFFFFF;
+  --color-cream-tint: #F7EBD8;
+  
+  /* Text & Border Colors */
+  --color-text-navy: #2B2F7A;
+  --color-text-muted: #5D629E;
+  --color-text-white: #FFFFFF;
+  --color-border-subtle: rgba(43, 47, 122, 0.12);
+
+  /* Typography */
+  --font-heading: 'Nunito', system-ui, -apple-system, sans-serif;
+  --font-body: 'Nunito', system-ui, -apple-system, sans-serif;
+
+  /* Corner Radii (Matching rounded retro device cards) */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 26px;
+  --radius-xl: 34px;
+  --radius-pill: 9999px;
+
+  /* Tactile Retro Drop Shadows */
+  --shadow-card: 0 12px 0 rgba(43, 47, 122, 0.12), 0 22px 30px rgba(43, 47, 122, 0.08);
+  --shadow-chunky-navy: 0 5px 0 var(--color-navy-dark);
+  --shadow-chunky-coral: 0 5px 0 var(--color-coral-dark);
+  --shadow-chunky-indigo: 0 5px 0 var(--color-navy);
+  --shadow-soft: 0 6px 18px rgba(43, 47, 122, 0.08);
+
+  /* Transitions */
+  --transition-fast: 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
+  --transition-normal: 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset & Base Typography
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-cream);
+  color: var(--color-text-navy);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Subtle background retro dot grid */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(var(--color-navy) 0.75px, transparent 0.75px);
+  background-size: 24px 24px;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Accessible visible focus outlines */
+:focus-visible {
+  outline: 3px solid var(--color-coral);
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button, input {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. Layout Utilities
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* --------------------------------------------------------------------------
+   4. Header & Navigation
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(255, 244, 227, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--color-border-subtle);
+  padding: 1rem 0;
+  transition: padding var(--transition-fast);
+}
+
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Brand Logo */
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+  color: var(--color-navy);
+}
+
+.brand-icon {
+  width: 42px;
+  height: 42px;
+  background: var(--color-navy);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-cream);
+  box-shadow: 0 3px 0 var(--color-navy-dark);
+  flex-shrink: 0;
+}
+
+.brand-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.brand-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--color-coral);
+  color: var(--color-cream);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-pill);
+  margin-left: 0.25rem;
+  letter-spacing: 0.05em;
+  vertical-align: middle;
+}
+
+/* Nav Links */
+.site-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-list {
+  display: none; /* Hidden on mobile; shown via hamburger or on tablet+ */
+  list-style: none;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.nav-link {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-navy);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-pill);
+  transition: all var(--transition-fast);
+}
+
+.nav-link:hover {
+  background-color: rgba(91, 95, 168, 0.1);
+  color: var(--color-indigo);
+}
+
+.nav-link.active {
+  background-color: var(--color-navy);
+  color: var(--color-cream);
+  box-shadow: 0 3px 0 var(--color-navy-dark);
+}
+
+/* Mobile Nav Toggle Button */
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  background: #FFFFFF;
+  border: 2px solid var(--color-navy);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--color-navy);
+  transition: transform var(--transition-fast);
+}
+
+.nav-toggle:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--color-navy);
+}
+
+.nav-toggle-bar {
+  width: 20px;
+  height: 2.5px;
+  background-color: var(--color-navy);
+  border-radius: 2px;
+  transition: all var(--transition-fast);
+}
+
+/* Mobile Menu Overlay Drawer */
+.mobile-drawer {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--color-cream);
+  border-bottom: 3px solid var(--color-navy);
+  padding: 1.5rem 1.25rem;
+  box-shadow: 0 15px 30px rgba(43, 47, 122, 0.15);
+  display: none;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mobile-drawer.is-open {
+  display: flex;
+}
+
+.mobile-drawer .nav-link {
+  font-size: 1.1rem;
+  padding: 0.75rem 1rem;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   5. Buttons (Chunky Retro Style)
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--color-navy);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: var(--color-coral);
+  color: var(--color-cream);
+  box-shadow: var(--shadow-chunky-coral);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-coral-light);
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 var(--color-coral-dark);
+}
+
+.btn-primary:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 var(--color-coral-dark);
+}
+
+.btn-secondary {
+  background-color: #FFFFFF;
+  color: var(--color-navy);
+  box-shadow: var(--shadow-chunky-navy);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-cream-tint);
+  transform: translateY(-2px);
+  box-shadow: 0 7px 0 var(--color-navy);
+}
+
+.btn-secondary:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 var(--color-navy);
+}
+
+/* Small retro icon button */
+.btn-icon {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --------------------------------------------------------------------------
+   6. Hero Section
+   -------------------------------------------------------------------------- */
+.hero-section {
+  padding: 3rem 0 4rem;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Retro Pill Tag */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: #FFFFFF;
+  border: 2px solid var(--color-navy);
+  border-radius: var(--radius-pill);
+  padding: 0.35rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--color-navy);
+  box-shadow: 0 3px 0 var(--color-navy);
+  width: fit-content;
+}
+
+.tag-pill .tag-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-coral);
+  border-radius: 50%;
+  animation: pulse-dot 1.8s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.6; }
+}
+
+.hero-title {
+  font-size: 2.4rem;
+  line-height: 1.15;
+  font-weight: 900;
+  color: var(--color-navy);
+  letter-spacing: -0.03em;
+}
+
+.hero-title-accent {
+  color: var(--color-coral);
+  position: relative;
+  display: inline-block;
+}
+
+.hero-title-accent::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  width: 100%;
+  height: 8px;
+  background: var(--color-coral);
+  opacity: 0.25;
+  border-radius: 4px;
+  z-index: -1;
+}
+
+.hero-pitch {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  max-width: 520px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* Trust / Feature Micro-Pills */
+.hero-perks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 2px dashed rgba(43, 47, 122, 0.15);
+}
+
+.perk-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-navy);
+}
+
+.perk-item svg {
+  color: var(--color-coral);
+  width: 18px;
+  height: 18px;
+}
+
+/* --------------------------------------------------------------------------
+   7. Decorative Music-Player Card ("Now Learning")
+   Inspired by Reference UI Layouts (Image 1):
+   - Rounded gadget frame
+   - Top status bar with window controls
+   - Media window with hand gesture & sound wave visualization
+   - Chunky media playback buttons & interactive fake progress bar
+   -------------------------------------------------------------------------- */
+.player-card-wrapper {
+  perspective: 1000px;
+}
+
+.music-player-card {
+  background-color: var(--color-indigo);
+  border: 3px solid var(--color-navy);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  color: var(--color-cream);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-normal);
+}
+
+.music-player-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Top Gadget Status Bar */
+.player-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 2px dashed rgba(255, 244, 227, 0.25);
+  margin-bottom: 1.25rem;
+}
+
+.player-window-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.window-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--color-navy);
+}
+
+.window-dot.close { background-color: var(--color-coral); }
+.window-dot.minimize { background-color: #FED766; }
+.window-dot.expand { background-color: #6BD425; }
+
+.player-mode-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--color-navy);
+  color: var(--color-cream);
+  padding: 0.2rem 0.75rem;
+  border-radius: var(--radius-pill);
+}
+
+/* Player Display Screen (Cream Card Inset) */
+.player-screen {
+  background-color: var(--color-cream);
+  color: var(--color-navy);
+  border: 2px solid var(--color-navy);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  box-shadow: inset 0 3px 6px rgba(43, 47, 122, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Display Upper: Song Info & Animated Sign Artwork */
+.player-screen-main {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Sign Language Visual Frame */
+.player-art-frame {
+  width: 88px;
+  height: 88px;
+  background-color: var(--color-coral);
+  border: 2px solid var(--color-navy);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 0 var(--color-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.player-art-frame svg {
+  width: 60px;
+  height: 60px;
+  color: var(--color-cream);
+  transition: transform var(--transition-normal);
+}
+
+.player-art-frame:hover svg {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.player-art-badge {
+  position: absolute;
+  bottom: 3px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  background: var(--color-navy);
+  color: var(--color-cream);
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+}
+
+/* Song Meta */
+.player-song-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.player-status-tag {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--color-coral);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Live Equalizer Bars */
+.live-equalizer {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+}
+
+.live-equalizer span {
+  width: 2.5px;
+  background-color: var(--color-coral);
+  border-radius: 1px;
+  animation: eq-bounce 1s ease-in-out infinite alternate;
+}
+
+.live-equalizer span:nth-child(1) { height: 40%; animation-delay: 0.1s; }
+.live-equalizer span:nth-child(2) { height: 100%; animation-delay: 0.3s; }
+.live-equalizer span:nth-child(3) { height: 60%; animation-delay: 0.2s; }
+.live-equalizer span:nth-child(4) { height: 85%; animation-delay: 0.4s; }
+
+.live-equalizer.is-paused span {
+  animation-play-state: paused;
+}
+
+@keyframes eq-bounce {
+  0% { height: 25%; }
+  100% { height: 100%; }
+}
+
+.player-song-title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin: 0.2rem 0;
+  color: var(--color-navy);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-song-artist {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+/* Key ASL vocabulary pills on the screen */
+.player-vocab-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.45rem;
+}
+
+.vocab-chip {
+  font-size: 0.7rem;
+  font-weight: 800;
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-navy);
+  border-radius: var(--radius-pill);
+  padding: 0.15rem 0.5rem;
+  color: var(--color-navy);
+}
+
+/* Lyrics & Sign Tip strip inside screen */
+.player-sign-tip {
+  background-color: rgba(91, 95, 168, 0.08);
+  border-left: 3px solid var(--color-indigo);
+  padding: 0.45rem 0.75rem;
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.player-sign-tip strong {
+  font-weight: 800;
+  color: var(--color-indigo-dark);
+}
+
+/* Timeline & Fake Progress Bar */
+.player-timeline-block {
+  margin-top: 1rem;
+}
+
+.timeline-progress-track {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 244, 227, 0.3);
+  border: 2px solid var(--color-navy);
+  border-radius: var(--radius-pill);
+  position: relative;
+  cursor: pointer;
+  overflow: visible;
+}
+
+.timeline-progress-fill {
+  width: 38%;
+  height: 100%;
+  background: var(--color-coral);
+  border-radius: var(--radius-pill);
+  position: relative;
+  transition: width 0.1s linear;
+}
+
+/* Scrubber Thumb */
+.timeline-scrubber-dot {
+  position: absolute;
+  right: -7px;
+  top: -4px;
+  width: 14px;
+  height: 14px;
+  background: #FFFFFF;
+  border: 2px solid var(--color-navy);
+  border-radius: 50%;
+  box-shadow: 0 2px 0 var(--color-navy);
+}
+
+.timeline-timestamps {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--color-cream);
+  margin-top: 0.4rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Player Chunk Buttons Deck */
+.player-controls-deck {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.25rem;
+}
+
+.deck-btn {
+  background: #FFFFFF;
+  color: var(--color-navy);
+  border: 2px solid var(--color-navy);
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--color-navy);
+  transition: all var(--transition-fast);
+}
+
+.deck-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.deck-btn:hover {
+  background: var(--color-cream-tint);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 var(--color-navy);
+}
+
+.deck-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--color-navy);
+}
+
+/* Chunky Big Center Play Button */
+.deck-btn-play {
+  width: 58px;
+  height: 58px;
+  background-color: var(--color-coral);
+  color: var(--color-cream);
+  box-shadow: var(--shadow-chunky-coral);
+}
+
+.deck-btn-play svg {
+  width: 26px;
+  height: 26px;
+}
+
+.deck-btn-play:hover {
+  background-color: var(--color-coral-light);
+  box-shadow: 0 7px 0 var(--color-coral-dark);
+}
+
+.deck-btn-play:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 var(--color-coral-dark);
+}
+
+/* Bottom Player Extra Strip: Speed & Sign Mode */
+.player-footer-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed rgba(255, 244, 227, 0.25);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.player-speed-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(43, 47, 122, 0.4);
+  padding: 0.2rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 244, 227, 0.2);
+}
+
+.speed-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-cream);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.speed-btn.is-active {
+  background: var(--color-coral);
+  color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   8. "How It Works" Section
+   -------------------------------------------------------------------------- */
+.how-it-works-section {
+  padding: 4.5rem 0;
+  background-color: #FFFFFF;
+  border-top: 3px solid var(--color-navy);
+  border-bottom: 3px solid var(--color-navy);
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 3rem;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-indigo);
+  background: rgba(91, 95, 168, 0.12);
+  padding: 0.25rem 0.8rem;
+  border-radius: var(--radius-pill);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--color-navy);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+}
+
+/* 3 Cards Grid - Retro Music-Player / Tape Aesthetic */
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+}
+
+.step-card {
+  border: 3px solid var(--color-navy);
+  border-radius: var(--radius-xl);
+  padding: 2rem 1.5rem;
+  position: relative;
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+}
+
+.step-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Card 1: Coral Accent */
+.step-card-coral {
+  background-color: var(--color-cream);
+  box-shadow: 0 10px 0 var(--color-coral);
+}
+
+/* Card 2: Indigo Accent */
+.step-card-indigo {
+  background-color: var(--color-cream);
+  box-shadow: 0 10px 0 var(--color-indigo);
+}
+
+/* Card 3: Deep Navy Accent */
+.step-card-navy {
+  background-color: var(--color-cream);
+  box-shadow: 0 10px 0 var(--color-navy);
+}
+
+/* Retro Step Header Bar with faux screw / window dots */
+.step-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.step-number-badge {
+  font-weight: 900;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--color-navy);
+  background: #FFFFFF;
+}
+
+.step-card-coral .step-number-badge {
+  color: var(--color-coral-dark);
+}
+.step-card-indigo .step-number-badge {
+  color: var(--color-indigo);
+}
+.step-card-navy .step-number-badge {
+  color: var(--color-navy);
+}
+
+.step-retro-dots {
+  display: flex;
+  gap: 4px;
+}
+
+.step-retro-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-navy);
+  opacity: 0.3;
+}
+
+/* Step Card Icon */
+.step-icon-box {
+  width: 68px;
+  height: 68px;
+  border: 2px solid var(--color-navy);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 0 var(--color-navy);
+}
+
+.step-card-coral .step-icon-box {
+  background-color: var(--color-coral);
+  color: var(--color-cream);
+}
+
+.step-card-indigo .step-icon-box {
+  background-color: var(--color-indigo);
+  color: var(--color-cream);
+}
+
+.step-card-navy .step-icon-box {
+  background-color: var(--color-navy);
+  color: var(--color-cream);
+}
+
+.step-icon-box svg {
+  width: 34px;
+  height: 34px;
+  fill: currentColor;
+}
+
+.step-card-title {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: var(--color-navy);
+  margin-bottom: 0.75rem;
+}
+
+.step-card-desc {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  flex-grow: 1;
+}
+
+/* Step Card Footer Pill */
+.step-feature-pill {
+  margin-top: 1.5rem;
+  padding: 0.45rem 0.85rem;
+  background: #FFFFFF;
+  border: 1.5px solid var(--color-navy);
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: fit-content;
+}
+
+/* --------------------------------------------------------------------------
+   9. Song Starter Feature Banner
+   -------------------------------------------------------------------------- */
+.song-strip-section {
+  padding: 4rem 0;
+}
+
+.retro-banner {
+  background: var(--color-navy);
+  color: var(--color-cream);
+  border-radius: var(--radius-xl);
+  border: 3px solid var(--color-navy-dark);
+  padding: 2.25rem 2rem;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.retro-banner-decor {
+  position: absolute;
+  right: -30px;
+  bottom: -30px;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.retro-banner-decor svg {
+  width: 260px;
+  height: 260px;
+}
+
+.banner-content {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+}
+
+.banner-title {
+  font-size: 1.8rem;
+  font-weight: 900;
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+}
+
+.banner-desc {
+  font-size: 1.05rem;
+  color: rgba(255, 244, 227, 0.88);
+  margin-bottom: 1.25rem;
+}
+
+.banner-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.song-chip {
+  background: rgba(255, 244, 227, 0.12);
+  border: 1px solid rgba(255, 244, 227, 0.3);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-cream);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* --------------------------------------------------------------------------
+   10. Site Footer & Deaf Education Disclaimer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background-color: var(--color-cream);
+  border-top: 3px solid var(--color-navy);
+  padding: 3.5rem 0 2rem;
+  margin-top: auto;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 2px dashed rgba(43, 47, 122, 0.2);
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.footer-brand-title {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--color-navy);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-brand-desc {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  max-width: 360px;
+}
+
+/* Respectful Deaf-Led Instruction Notice Box */
+.deaf-notice-card {
+  background-color: #FFFFFF;
+  border: 2px solid var(--color-navy);
+  border-left: 6px solid var(--color-coral);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 4px 0 var(--color-navy);
+}
+
+.notice-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--color-navy);
+  margin-bottom: 0.4rem;
+}
+
+.notice-header svg {
+  width: 20px;
+  height: 20px;
+  color: var(--color-coral);
+  flex-shrink: 0;
+}
+
+.deaf-notice-card p {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--color-navy);
+}
+
+.deaf-notice-card strong {
+  font-weight: 800;
+  color: var(--color-navy-dark);
+}
+
+/* Footer Bottom Links & Copyright */
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.75rem;
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.25rem;
+  list-style: none;
+}
+
+.footer-links a {
+  font-weight: 700;
+  color: var(--color-navy);
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--color-coral);
+}
+
+/* --------------------------------------------------------------------------
+   11. Responsive Media Queries (Mobile-First)
+   -------------------------------------------------------------------------- */
+@media (min-width: 640px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-bottom {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 960px) {
+  .nav-list {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .hero-section {
+    padding: 4.5rem 0 5.5rem;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3.5rem;
+  }
+
+  .hero-title {
+    font-size: 3.4rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr 1.2fr;
+    align-items: center;
+  }
+}
